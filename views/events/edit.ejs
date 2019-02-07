@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+
+    <div class="container">
+        <div class="row">
+            <div class="formStyle">
+                <h1 class="formTitle">Edit "<%= event.title %>"</h1>
+                <form action="/events/<%= event._id %>?_method=PUT" method="POST">
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="text" name="event[title]" value="<%= event.title %>" placeholder="Title">    
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="text" name="event[image]" value="<%= event.image %>" placeholder="event Image">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="text" name="event[description]" value="<%= event.description %>" placeholder="Description...">
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-block btn-lg btn-dark" type="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+<% include ../partials/footer %>

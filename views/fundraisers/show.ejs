@@ -1,0 +1,150 @@
+<% include ../partials/header %>
+<script>
+    function increaseValue() {
+  var value = parseInt(document.getElementById('number').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value=value+100;
+  document.getElementById('number').value = value;
+}
+
+function decreaseValue() {
+  var value = parseInt(document.getElementById('number').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value < 100 ? value = 100 : '';
+  value=value-100;
+  document.getElementById('number').value = value;
+}
+</script>
+
+var barValue = 0;
+<style>
+    form {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.value-button {
+  display: inline-block;
+  border: 1px solid #ddd;
+  margin: 0px;
+  width: 40px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 11px 0;
+  background: #eee;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.value-button:hover {
+  cursor: pointer;
+}
+
+form #decrease {
+  margin-right: -4px;
+  border-radius: 8px 0 0 8px;
+}
+
+form #increase {
+  margin-left: -4px;
+  border-radius: 0 8px 8px 0;
+}
+
+form #input-wrap {
+  margin: 0px;
+  padding: 0px;
+}
+
+input#number {
+  text-align: center;
+  border: none;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 0px;
+  width: 40px;
+  height: 40px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="img-thumbnail">
+                <img class="img-responsive photoSize" src="<%= fundraiser.image %>">
+                <div class="caption-full">
+                    <h4 class="float-right"><%= fundraiser.created.toDateString() %></h4>
+                    <h3><a><%= fundraiser.title %></a></h3>
+                    <p><%= fundraiser.description %></p>
+                    <p><em>Submitted by <%= fundraiser.author.username%></em></p>
+                    <% if(currentUser && fundraiser.author.id.equals(currentUser._id)) { %>
+                    <div class="float-right">
+                    <form action="/pay" method="POST">
+                      <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value"></div>
+                      <input type="number" id="number" name="donation" value="0" />
+                      <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value"></div>
+                      <input type="submit" class="btn btn-primary px-3 py-2 mt-2 online-block" value="Donate">
+                    </form>
+                    </div>
+                        <div style="padding: 4%;">
+                        <a href="/fundraisers/<%= fundraiser._id %>/edit" class="btn btn-warning">Edit</a>
+                        <form class="line online-block" action="/fundraisers/<%= fundraiser._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form><br>
+                        </div>
+                    <% } %>
+                    <div class="progress custom-progress-success" style="position: relative; top: 5%;">
+		                <div class="progress-bar bg-primary" role="progressbar" style="width: barValue%" aria-valuenow="<%=fundraiser.amount%>" aria-valuemin="0" aria-valuemax="<%=fundraiser.goal%>"><br></div>
+		            </div>
+		            <p>Goal: ₹<%= fundraiser.goal %></p>
+                </div>
+            </div>
+            <div class="card text-black bg-light mb-3" style="top: 5%;">
+                <div class="card-header">
+                    <h4>
+                        Comments
+                        <a class="btn btn-success float-right" href="/fundraisers/<%= fundraiser._id %>/comments/new">Add a New Comment</a>
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <% fundraiser.comments.forEach(function(comment) { %>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <strong><%= comment.author.username %></strong>
+                                <span class="float-right"><%= comment.created.toDateString() %></span>
+                                <p>
+                                    <div>
+                                        <%= comment.text %>
+                                        <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+                                            <div class="float-right">
+                                                <a class="btn btn-sm btn-warning" href="/fundraisers/<%= fundraiser._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                                                <form action="/fundraisers/<%= fundraiser._id %>/comments/<%= comment._id %>?_method=DELETE" class="inline-block" method="POST">
+                                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br>
+
+module.exports = fundraiser;
+<% include ../partials/footer %>

@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="img-thumbnail position">
+                <img class="img-responsive photoSize" src="<%= feedback.image %>">
+                <div class="caption-full">
+                    <h4 class="float-right"><%= feedback.created.toDateString() %></h4>
+                    <h3><a><%= feedback.title %></a></h3>
+                    <p><%= feedback.description %></p>
+                    <p><em>Submitted by <%= feedback.author.username%></em></p>
+                    <% if(currentUser && feedback.author.id.equals(currentUser._id)) { %>
+                        <a href="/feedback/<%= feedback._id %>/edit" class="btn btn-warning">Edit</a>
+                        <form class="line online-block" action="/feedback/<%= feedback._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br>
+<% include ../partials/footer %>

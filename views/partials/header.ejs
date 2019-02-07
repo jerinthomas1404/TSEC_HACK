@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>New Hope- A Govt Initiative</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,400i,600,700" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    
+    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="/assets/css/aos.css">
+
+    <link rel="stylesheet" href="/assets/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/assets/css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="/assets/css/flaticon.css">
+    <link rel="stylesheet" href="/assets/css/icomoon.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" style="color: black;" href="/">New Hope</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse"id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <% if(!currentUser) { %>
+              <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+              <li class="nav-item"><a href="/" class="nav-link">About</a></li>
+              <li class="nav-item"><a href="/fundraisers" class="nav-link">Fundraisers</a></li>
+              <li class="nav-item"><a href="/feedback" class="nav-link">Records</a></li>
+              <li class="nav-item"><a href="/events" class="nav-link">Events</a></li>
+              <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+              <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+            <% } else { %>
+                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+              <li class="nav-item"><a href="/" class="nav-link">About</a></li>
+              <li class="nav-item"><a href="/fundraisers" class="nav-link">Fundraisers</a></li>
+              <li class="nav-item"><a href="/feedback" class="nav-link">Records</a></li>
+              <li class="nav-item"><a href="/students" class="nav-link">Students</a></li>
+              <li class="nav-item"><a href="/events" class="nav-link">Events</a></li>
+              <li class="nav-item"><a href="/inventory" class="nav-link">Inventory</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Signed in as <%= currentUser.username %></a></li>
+                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+            <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav><br><br><br>

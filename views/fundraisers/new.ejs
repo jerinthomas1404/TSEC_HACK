@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+    
+    <div class="container">
+        <div class="row">
+            <div class="formStyle">
+                <h1 class="formTitle">Start a New Fundraiser</h1>
+                <form action="/fundraisers" method="POST">
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="text" name="title" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="text" name="image" placeholder="Image">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="number" min="1000" max="50000" step="500" name="goal" placeholder="Donation Goal">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="text" name="description" placeholder="Description">
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-lg btn-block btn-dark" type="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<% include ../partials/footer %>

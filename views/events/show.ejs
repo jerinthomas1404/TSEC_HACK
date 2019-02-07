@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="img-thumbnail position">
+                <img class="img-responsive photoSize" src="<%= event.image %>">
+                <div class="caption-full">
+                    <h4 class="float-right"><%= event.created.toDateString() %></h4>
+                    <h3><a><%= event.title %></a></h3>
+                    <h4>Held on <%= event.date.toDateString() %></h4>
+                    <p><%= event.description %></p>
+                    <p><em>Submitted by <%= event.author.username%></em></p>
+                    <% if(currentUser && event.author.id.equals(currentUser._id)) { %>
+                        <a href="/events/<%= event._id %>/edit" class="btn btn-warning">Edit</a>
+                        <form class="line online-block" action="/events/<%= event._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<br><br><br>
+<% include ../partials/footer %>

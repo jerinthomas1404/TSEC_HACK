@@ -1,0 +1,101 @@
+<% include ../partials/header %>
+<head>
+<script>
+window.onload = function () {
+	// var english =
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Student Performance: 2019"
+	},
+	axisX: {
+		interval: 1
+	},
+	axisY: {
+		title: "Marks(100)",
+		maximum:100
+	},
+	data: [{
+		type: "bar",
+		dataPoints: [
+			{ label: "English", y: <%=student.marks.english%>},
+			{ label: "Science", y: <%=student.marks.science%> },
+			{ label: "Mathematics", y: <%=student.marks.mathematics%>},
+			{ label: "Hindi", y: <%=student.marks.hindi%>},
+			{ label: "Marathi", y: <%=student.marks.marathi%>},
+			{ label: "Value_edu", y: <%=student.marks.value_edu%>}
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+</head>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="img-thumbnail position">
+                <img class="img-responsive photoSize" src="<%= student.image %>">
+                <div class="caption-full">
+                    <h4 class="float-center">Name: <%= student.name %></h4>
+                    <h4 class="float-right"><%= student.last_updated.toDateString() %></h4>
+                    <h3><a>Age: <%=student.age%> year(s) old</a></h3>
+                    <h4>Overall Grade:<%= student.ovr_grade%></h4>
+                    <p><%= student.description %></p>
+                    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                    <br><br>
+                    <br><br>
+                    <div class="jumbotron">
+        	<table class="table table-striped">
+						  <thead class="thead-dark">
+						    <tr>
+						      <th scope="col">Vaccination</th>
+						      <th scope="col">Status</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <td>Allergies</td>
+						      <td><%if(student.allergies){%>
+						    		<span><i class="fa fa-check" style="color:black; font-size:30px"></i></span>
+						    	<% }else{%>
+						    		<span><i class="fa fa-times" style="color:black; font-size:30px"></i></span>
+						    		<% }%>
+						      </td>
+						    </tr>
+						    <tr>
+						      <td>Asthma</td>
+						      <td><%if(student.asthma){%></td>
+						    		<span><i class="fa fa-check" style="color:black; font-size:30px"></i></span>
+						    	<% }else{%>
+						    		<span><i class="fa fa-times" style="color:black; font-size:30px"></i></span>
+						    		<% }%>
+						    </tr>
+						    <tr>
+						      <td>Epilepsy</td>
+						      <td><%if(false){%></td>
+						    		<span><i class="fa fa-check" style="color:black; font-size:30px"></i></span>
+						    	<% }else{%>
+						    		<span><i class="fa fa-times" style="color:black; font-size:30px"></i></span>
+						    		<% }%>
+						    </tr>
+						    <tr>
+						      <td>Other</td>
+						      <td><%=student.other%></td>
+						    </tr>
+						    <tr>
+						      <td>Description</td>
+						      <td><%=student.description%></td>
+						    </tr>
+						  </tbody>
+						</table>
+        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<br><br><br><br>
+<% include ../partials/footer %>
