@@ -6,6 +6,8 @@ It encourages communication between different organizations as a cumulative effo
 
 The Portal enables the organization to dynamically plan and maintain various initiatives like fundraisers, co-operative events, feedbacks, volunteering, inventory and resource management, etc.
 
+It collaborates with old age homes and other NGOs for event organizations.
+
 It also provides a real-time system for video communication, which could be used for teaching or other non-curricular purposes.
 
 Portal also offers data visualization services with regards to the Student Performance.
